@@ -11,4 +11,5 @@ USER $APPLICATION_USER
 COPY ./build/libs/ktor_test-0.0.1-all.jar /app/ktor_test-0.0.1.jar
 WORKDIR /app
 
+EXPOSE 8080
 CMD ["java", "-server", "-XX:+UnlockExperimentalVMOptions", "-XX:+UseCGroupMemoryLimitForHeap", "-XX:InitialRAMFraction=2", "-XX:MinRAMFraction=2", "-XX:MaxRAMFraction=2", "-XX:+UseG1GC", "-XX:MaxGCPauseMillis=100", "-XX:+UseStringDeduplication", "-jar", "ktor_test-0.0.1.jar", "nl.pm.ktor_test.ApplicationKt"]

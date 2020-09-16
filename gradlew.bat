@@ -1,4 +1,4 @@
-@if "%DEBUG%" == "" @echo off
+docker build -t my-application .@if "%DEBUG%" == "" @echo off
 @rem ##########################################################################
 @rem
 @rem  Gradle startup script for Windows
