@@ -12,7 +12,7 @@ import routes.apiRoute
 
 @KtorExperimentalAPI
 fun Application.module() {
-    initDB()
+//    initDB()
 
     install(DefaultHeaders)
     install(CallLogging)
