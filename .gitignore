@@ -1,7 +1,13 @@
 /.gradle
 /.idea
 /out
-/build
+/build/classes
+/build/distributions
+/build/kotlin
+/build/resources
+/build/scripts
+/build/scriptsShadow
+/build/tmp
 *.iml
 *.ipr
 *.iws
@@ -19,7 +25,7 @@
 .mtj.tmp/
 
 # Package Files #
-*.jar
+
 *.war
 *.nar
 *.ear
