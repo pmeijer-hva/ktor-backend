@@ -1,4 +1,7 @@
+package nl.pm.ktor_test
+
 import freemarker.cache.ClassTemplateLoader
+import initDB
 import io.ktor.application.*
 import io.ktor.features.*
 import io.ktor.freemarker.*
@@ -7,12 +10,10 @@ import io.ktor.http.content.*
 import io.ktor.routing.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
-import io.ktor.util.*
 import routes.apiRoute
 
-@KtorExperimentalAPI
 fun Application.module() {
-//    initDB()
+    initDB()
 
     install(DefaultHeaders)
     install(CallLogging)
@@ -31,7 +32,6 @@ fun Application.module() {
 
 }
 
-@KtorExperimentalAPI
 fun main(args: Array<String>) {
     embeddedServer(Netty, 8080,
         watchPaths = listOf("ktor_test"),

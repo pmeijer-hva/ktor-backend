@@ -2,16 +2,23 @@ version: "2.1"
 
 services:
   app:
-    image: 127.0.0.1:8080
     build:
       context: .
       dockerfile: ./Dockerfile
     ports: ["8080:8080"]
+    expose:
+      - 8080
   books_db:
     image: postgres:13-alpine
     environment:
-      POSTGRES_DB: "bookdb"
-      POSTGRES_USER: "user"
-      POSTGRES_PASSWORD: "Paard1234!"
-      POSTGRES_ROOT_PASSWORD: "Paard1234!"
-    ports: ["5432:5432"]
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=book_db
+    expose:
+      - 5432
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+volumes:
+    pgdata:
