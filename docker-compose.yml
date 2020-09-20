@@ -1,6 +1,38 @@
 version: "2.1"
 
 services:
+  books_db:
+    image: postgres:13-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: bookdb
+    ports:
+      - "5432:5432"
+    expose:
+      - 5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - local
+
+  pgAdmin:
+    restart: always
+    image: dpage/pgadmin4
+    ports:
+      - "8000:80"
+    expose:
+      - 8000
+    depends_on:
+      - "books_db"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: postgres@postgres.nl
+      PGADMIN_DEFAULT_PASSWORD: postgres
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+    networks:
+      - local
+
   app:
     build:
       context: .
@@ -8,17 +40,15 @@ services:
     ports: ["8080:8080"]
     expose:
       - 8080
-  books_db:
-    image: postgres:13-alpine
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=book_db
-    expose:
-      - 5432
-    ports:
-      - "5432:5432"
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+    depends_on:
+      - "books_db"
+    networks:
+      - local
+
 volumes:
     pgdata:
+    pgadmin:
+
+networks:
+  local:
+    driver: bridge
