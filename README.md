@@ -1,5 +1,3 @@
-# Header
-
 ## Welcome to Github Pages
 
 ```kotlin
